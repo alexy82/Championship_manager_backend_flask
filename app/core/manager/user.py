@@ -16,7 +16,6 @@ from app.core.manager.user_permission import \
 from app.core.manager.role import get_all_role_by_user_id
 from app.core.manager.permission import get_by_ids, get_all_permission_by_user_id
 from app.core.utils.constants import InternalErrorCode, TeamStatus, permissions
-from configs import ORDER_QUANTITY_IN_CHARGE_PER_ASSIGNEE, REVIEW_NATION_DEBT_USERS
 
 LOGGER = logging.getLogger('main')
 
@@ -109,8 +108,6 @@ def create_user(data):
             username=data.get('email'),
             fullname=data.get('fullname', ''),
             mobile=data.get('mobile', ''),
-            max_order_process=data.get('max_order_process',
-                                       ORDER_QUANTITY_IN_CHARGE_PER_ASSIGNEE)
         )
 
         id = new_user.id
