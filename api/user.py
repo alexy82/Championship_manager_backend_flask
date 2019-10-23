@@ -23,7 +23,6 @@ class UserList(Resource):
     def get(self, limit, offset):
         """Get user list"""
         try:
-            log_api_request(request)
             data = user.get_all_users(value=request.args.get('value', ''))
             if data is None:
                 return wrap_response('Server Internal Error: ',

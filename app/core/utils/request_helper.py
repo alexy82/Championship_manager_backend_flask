@@ -19,17 +19,9 @@ def get_client_ip(request):
 
 def log_api_request(request):
     ip = get_client_ip(request)
-    try:
-        token = request.headers['Authorization'].split()[1]
-        sso_info = get_info_token(token)
-        actor = sso_info.get('email')
-    except:
-        actor = None
-
-    logger.info('Request | ip: {} | url: {} | method: {} | payload: {} | actor: {}'.format(
+    logger.info('Request | ip: {} | url: {} | method: {} | payload: {}}'.format(
         ip,
         request.full_path,
         request.method,
-        request.data,
-        actor
+        request.data
     ))

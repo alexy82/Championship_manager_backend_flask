@@ -32,7 +32,6 @@ class User(db.Model):
             'username': self.username,
             'fullname': self.fullname,
             'mobile': self.mobile,
-            'sso_user_id': self.sso_user_id,
             'is_active': self.is_active,
             'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%Y-%m-%d %H:%M:%S'),

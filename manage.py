@@ -15,7 +15,7 @@ manager.add_command('db', MigrateCommand)
 
 @manager.command
 def run():
-    application.run(debug=os.getenv('DEBUG'))
+    application.run(debug=os.getenv('DEBUG'),host='0.0.0.0')
 
 
 @manager.command
