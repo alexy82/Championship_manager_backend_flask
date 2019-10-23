@@ -20,7 +20,6 @@ def validate_access_token(data):
 
     user_data = {
         'email': resp.get('email'),
-        'sso_user_id': resp.get('id')
     }
     our_user_info = User.update(user_data)
     if our_user_info is None:

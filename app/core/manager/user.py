@@ -235,10 +235,3 @@ def get_by_email(email):
         return None
     return user.as_dict() if user is not None else None
 
-
-def get_by_sso_id(sso_id):
-    try:
-        user = User.query.filter_by(sso_user_id=sso_id).first()
-        return user.as_dict()
-    except Exception as e:
-        return None
