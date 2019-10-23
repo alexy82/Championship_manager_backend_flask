@@ -19,7 +19,7 @@ def get_client_ip(request):
 
 def log_api_request(request):
     ip = get_client_ip(request)
-    logger.info('Request | ip: {} | url: {} | method: {} | payload: {}}'.format(
+    logger.info('Request | ip: {} | url: {} | method: {} | payload: {}'.format(
         ip,
         request.full_path,
         request.method,
