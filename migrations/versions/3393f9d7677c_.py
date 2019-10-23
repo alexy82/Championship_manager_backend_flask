@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 4f3a872f0166
+Revision ID: 3393f9d7677c
 Revises: 
-Create Date: 2019-10-02 14:25:03.920029
+Create Date: 2019-10-23 06:56:53.618025
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = '4f3a872f0166'
+revision = '3393f9d7677c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -50,7 +50,7 @@ def upgrade():
     sa.Column('username', sa.String(length=100), nullable=True),
     sa.Column('fullname', sa.String(length=125), nullable=False),
     sa.Column('mobile', sa.String(length=32), nullable=True),
-    sa.Column('max_order_process', mysql.TINYINT(display_width=1), nullable=True),
+    sa.Column('is_active', sa.Boolean(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.Column('last_login', sa.DateTime(), nullable=True),
@@ -58,7 +58,7 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    op.create_index(op.f('ix_user_max_order_process'), 'user', ['max_order_process'], unique=False)
+    op.create_index(op.f('ix_user_is_active'), 'user', ['is_active'], unique=False)
     op.create_table('role_permission',
     sa.Column('role_id', sa.INTEGER(), nullable=False),
     sa.Column('permission_id', sa.INTEGER(), nullable=False),
@@ -88,7 +88,7 @@ def downgrade():
     op.drop_table('user_role')
     op.drop_table('user_permission')
     op.drop_table('role_permission')
-    op.drop_index(op.f('ix_user_max_order_process'), table_name='user')
+    op.drop_index(op.f('ix_user_is_active'), table_name='user')
     op.drop_table('user')
     op.drop_table('role')
     op.drop_table('permission')

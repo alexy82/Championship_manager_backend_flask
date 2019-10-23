@@ -17,7 +17,7 @@ class User(db.Model):
     username = db.Column(db.String(100), unique=True)
     fullname = db.Column(db.String(125), nullable=False)
     mobile = db.Column(db.String(32))
-    max_order_process = db.Column(TINYINT(1), index=True)
+    is_active = db.Column(db.Boolean, index=True)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime)
     last_login = db.Column(db.DateTime)
@@ -33,21 +33,21 @@ class User(db.Model):
             'fullname': self.fullname,
             'mobile': self.mobile,
             'sso_user_id': self.sso_user_id,
-            'max_order_process': self.max_order_process,
+            'is_active': self.is_active,
             'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S'),
             'updated_at': self.updated_at.strftime('%Y-%m-%d %H:%M:%S'),
             'last_login': self.last_login.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
     @classmethod
-    def create(cls, email, username, fullname, mobile, max_order_process):
+    def create(cls, email, username, fullname, mobile):
         try:
             user = User(
                 email=email,
                 username=username,
                 fullname=fullname,
                 mobile=mobile,
-                max_order_process=max_order_process,
+                is_active=True,
                 created_at=datetime.datetime.utcnow(),
                 updated_at=datetime.datetime.utcnow(),
                 last_login=datetime.datetime.utcnow(),
